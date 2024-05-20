@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Temperature Converter</h2>
+
+<p>Enter a temperature and select its unit:</p>
+
+<input id="tempInput" type="number" placeholder="Enter temperature">
+<select id="unitSelect">
+  <option value="celsius">Celsius</option>
+  <option value="fahrenheit">Fahrenheit</option>
+  <option value="kelvin">Kelvin</option>
+</select>
+
+<button onclick="convertTemperature()">Convert</button>
+
+<p id="result"></p>
+
+<script>
+function convertTemperature() {
+  var temp = document.getElementById('tempInput').value;
+  var unit = document.getElementById('unitSelect').value;
+
+  if (unit == 'celsius') {
+    var fahrenheit = celsiusToFahrenheit(temp);
+    var kelvin = celsiusToKelvin(temp);
+    document.getElementById('result').innerHTML = 'Fahrenheit: ' + fahrenheit + ' Kelvin: ' + kelvin;
+  } else if (unit == 'fahrenheit') {
+    var celsius = fahrenheitToCelsius(temp);
+    var kelvin = fahrenheitToKelvin(temp);
+    document.getElementById('result').innerHTML = 'Celsius: ' + celsius + ' Kelvin: ' + kelvin;
+  } else if (unit == 'kelvin') {
+    var celsius = kelvinToCelsius(temp);
+    var fahrenheit = kelvinToFahrenheit(temp);
+    document.getElementById('result').innerHTML = 'Celsius: ' + celsius + ' Fahrenheit: ' + fahrenheit;
+  }
+}
+
+function celsiusToFahrenheit(celsius) {
+  return (celsius * 9/5) + 32;
+}
+
+function celsiusToKelvin(celsius) {
+  return celsius + 273.15;
+}
+
+function fahrenheitToCelsius(fahrenheit) {
+  return (fahrenheit - 32) * 5/9;
+}
+
+function fahrenheitToKelvin(fahrenheit) {
+  return celsiusToKelvin(fahrenheitToCelsius(fahrenheit));
+}
+
+function kelvinToCelsius(kelvin) {
+  return kelvin - 273.15;
+}
+
+function kelvinToFahrenheit(kelvin) {
+  return celsiusToFahrenheit(kelvinToCelsius(kelvin));
+}
+</script>
+
+</body>
+</html>
